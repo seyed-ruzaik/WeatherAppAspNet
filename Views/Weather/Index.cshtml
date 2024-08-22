@@ -1,0 +1,29 @@
+
+@model WeatherApp.Models.WeatherViewModel
+@{
+    ViewData["Title"] = "Weather Information";
+}
+
+<h2>Weather Information</h2>
+
+<form method="post" asp-controller="Weather" asp-action="Index">
+    <div class="form-group">
+        <label for="city">Enter city name:</label>
+        <input type="text" class="form-control" id="city" name="city" placeholder="City name">
+    </div>
+    <button type="submit" class="btn btn-primary">Get Weather</button>
+</form>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger mt-3">@ViewBag.Error</div>
+}
+else if (Model != null)
+{
+    <div class="mt-3">
+        <h3>@Model.City</h3>
+        <p>Temperature: @Model.Temperature°C</p>
+        <p>Feels Like: @Model.FeelsLike°C</p>
+        <p>Description: @Model.Description</p>
+    </div>
+}
